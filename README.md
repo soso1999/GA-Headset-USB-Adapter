@@ -1,11 +1,13 @@
 # GA Headset USB Adapter — Dual-GA Aviation Headset to USB for Flight Simulators
 
-DIY-Adapter zum Anschluss eines Dual-GA-Headsets mit zwei Klinkensteckern, beispielsweise eines **Lightspeed Zulu 4**, an einen PC oder Flugsimulator über eine USB-Soundkarte.
+DIY-Adapter zum Anschluss eines Dual-GA-Aviation-Headsets, beispielsweise eines **Lightspeed Zulu 4**, an einen PC oder Flugsimulator über USB.
+
+**Aktueller getesteter Entwicklungsstand: V2.0.0 mit regelbarem analogem Sidetone.**
 
 > **Nur für PC-/Simulator-Nutzung. Kein zertifiziertes Luftfahrtgerät. Nicht im Flugzeug verwenden und nicht an Flugzeug-Audio-, Funk-, Intercom- oder Bordstromsysteme anschließen.**  
 > Siehe [DISCLAIMER](DISCLAIMER.md).
 
-![GA Headset USB Adapter V1 für Lightspeed Zulu 4 und Flugsimulator](docs/images/finished-device.jpg)
+![GA Headset USB Adapter V2 mit analogem Sidetone](docs/images/v2-finished-device.jpg)
 
 <a href="https://buymeacoffee.com/soso1999">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
@@ -13,120 +15,99 @@ DIY-Adapter zum Anschluss eines Dual-GA-Headsets mit zwei Klinkensteckern, beisp
        height="50">
 </a>
 
-## Stand dieser Veröffentlichung
+## Versionen
 
-Der V1-Prototyp wurde gedruckt, aufgebaut und erfolgreich am PC getestet. Mikrofonaufnahme und Wiedergabequalität sind sehr gut.
+| Version | Status | Funktionen |
+|---|---|---|
+| **V1.0.0** | stabiler getesteter Prototyp | Dual-GA auf USB, Mikrofon-Bias, Stereo-Kopfhörerausgang |
+| **V2.0.0** | getesteter Prototyp | alles aus V1 plus regelbarer analoger Sidetone, OPA2134-Vorverstärker und überarbeitete Audio-Mischung |
 
-Der Aufbau wurde erfolgreich mit einem **Lightspeed Zulu 4 Dual-GA** sowie einem **Bose QC35 II mit AVEE-Mikrofonadapter** getestet.
+V1 bleibt vollständig dokumentiert und wird nicht überschrieben. Die ursprünglichen V1-Dateien befinden sich weiterhin in `hardware/`, `docs/` und `cad/`.
 
-Dies ist die Dokumentation eines funktionierenden Einzelprototyps und keine messtechnische, sicherheitstechnische oder allgemeine Kompatibilitätsfreigabe.
+Die V2-Erweiterung befindet sich separat unter [`v2/`](v2/README.md).
 
-**Dokumentationsstand: v1.0.0**
+## V2 — Analog Sidetone
 
-## Stückliste (BOM)
+V2 ergänzt den funktionierenden V1-Adapter um einen **analogen Sidetone-Pfad**.
 
-| Anzahl | Bauteil | Wert / Typ | Hinweise |
-|---:|---|---|---|
-| 1 | USB-Soundkarte | DollaTek Free Drive USB-Soundkarte | Stellt Mikrofoneingang und Stereo-Kopfhörerausgang bereit |
-| 1 | DC-DC-Step-Up-Wandler | GTIWUNG 5 V → 12 V Boost Converter | Wird aus USB 5 V versorgt und erzeugt die Mikrofon-Bias-Spannung |
-| 1 | Mikrofonbuchse | PJ-068 Aviation-Mikrofonbuchse | Für den GA-Mikrofonstecker |
-| 1 | Kopfhörerbuchse | Neutrik NMJ3HF-S | 6,35 mm / 1/4" Stereo-Klinkenbuchse |
-| 1 | Lochrasterplatine | ca. 60 × 40 mm | Abmessungen können je nach Aufbau variieren |
-| 1 | Widerstand R1 | 22 Ω | Bestandteil des Versorgungsfilters |
-| 1 | Widerstand R2 | 220 Ω | Bias-Widerstand für das Mikrofon |
-| 1 | Widerstand R3 | 10 kΩ | Serienwiderstand zum Mikrofoneingang der USB-Soundkarte |
-| 1 | Elko C1 | 470 µF / mindestens 25 V | Glättung der Versorgungsspannung; Polarität beachten |
-| 1 | Keramikkondensator C2 | 100 nF / mindestens 25 V | HF-Entstörung der Versorgung |
-| 1 | Folienkondensator C3 | 1 µF WIMA | Gleichspannungsentkopplung / Audio-Koppelkondensator |
-| – | Schaltdraht / Litze | nach Aufbau | Interne Verdrahtung |
-| – | Schrumpfschlauch / Isolierung | nach Aufbau | Zur elektrischen Isolation |
-| 1 | USB-Anschlusskabel | USB-A-Stecker auf offenes Kabelende | Mindestens 4-adriges USB-2.0-Kabel für +5 V, GND, D+ und D− |
-| 1 | 3D-gedrucktes Gehäuse | Eigenkonstruktion | Für 60 × 40 mm Platine und beide Aviation-Buchsen |
-| 4 | M3-Schrauben | – | Für den Gehäusedeckel |
-| 4 | M3-Gewindeeinsätze | Heat-Set Inserts | Werden mit dem Lötkolben in das Gehäuse eingeschmolzen |
+Das Mikrofonsignal wird am GA-Mikrofonanschluss abgegriffen, analog verstärkt, über einen eigenen Lautstärkeregler eingestellt und anschließend getrennt in den linken und rechten Kopfhörerkanal eingespeist.
 
-Die ausführliche Stückliste befindet sich unter [hardware/BOM.md](hardware/BOM.md) bzw. [hardware/BOM.csv](hardware/BOM.csv).
+Dadurch ist die eigene Stimme im Headset **praktisch ohne wahrnehmbare Software-Latenz** hörbar, ähnlich dem Sidetone-Erlebnis in einem Flugzeug-Intercom.
 
-Die 12-V-Mikrofon-Bias-Spannung des USB-Adapters versorgt ausschließlich das Elektret-Mikrofon. Sie speist nicht die ANR- oder Bluetooth-Elektronik des Headsets. Beim Lightspeed Zulu 4 Dual-GA erfolgt deren Versorgung weiterhin über die beiden AA-Batterien.
+Beim getesteten **Lightspeed Zulu 4 Dual-GA** sind Sprachwiedergabe und PC-Audio sauber; im praktischen Betrieb des fertigen V2-Prototyps ist kein störendes Hintergrundgeräusch aufgefallen.
 
-LEMO- und Helikopter-Stecker werden von dieser Version nicht unterstützt.
+### Front
 
-### Mikrofon-Signalweg
+Von links nach rechts:
 
-USB 5 V → Step-Up auf 12 V → 22-Ω-Filterwiderstand →  
-gefilterter Versorgungspunkt mit 470-µF-Elko und 100-nF-Kondensator gegen GND →  
-220-Ω-Mikrofon-Bias-Widerstand →  
-Ring der PJ-068-Mikrofonbuchse
+**Sidetone-Lautstärke — GA-Mikrofon — GA-Kopfhörer**
 
-Mikrofon-Ring → 1-µF-Koppelkondensator → 10-kΩ-Widerstand →  
-MIC-Eingang der USB-Soundkarte
+![Front des GA Headset USB Adapter V2](docs/images/v2-front-panel.jpg)
 
-PJ-068 Sleeve → gemeinsame Masse (GND)
+### Innenaufbau
 
-PJ-068 Tip → nicht belegt
+Die V2-Sidetone-Schaltung ist als separate Zusatzplatine ausgeführt. Die funktionierende V1-Grundschaltung bleibt erhalten.
 
-### Kopfhörerausgang
+![V2 Sidetone-Platine und interne Verdrahtung](docs/images/v2-internal-wiring.jpg)
 
-Der Stereo-Ausgang der USB-Soundkarte wird direkt an die 6,35-mm-Aviation-Kopfhörerbuchse geführt.
+![Interner Aufbau des V2-Prototyps](docs/images/v2-internal-layout.jpg)
 
-- Tip = linker Kanal
-- Ring = rechter Kanal
-- Sleeve = Masse (GND)
+## Finale getestete Audio-Mischung V2
 
-Eine zusätzliche Hardware-Mono-Mischung wird in Version 1 nicht verwendet.
+Die funktionierende Kombination des V2-Prototyps ist:
 
-Für eine korrekte Links-/Rechts-Kanaltrennung sollte das Headset auf Stereo gestellt werden. Beim Lightspeed Zulu 4 kann die Wiedergabe auch in der Stellung Mono normal funktionieren; dabei kann jedoch die echte Stereo-Kanaltrennung verloren gehen.
+```text
+USB-Soundkarte LEFT  ── 100 Ω ── J2 Tip   (links)
+USB-Soundkarte RIGHT ── 100 Ω ── J2 Ring  (rechts)
 
-Alle Masseverbindungen der Schaltung verwenden einen gemeinsamen GND.
+SIDETONE OUT ────────── 220 Ω ── J2 Tip
+SIDETONE OUT ────────── 220 Ω ── J2 Ring
 
-## Dokumentation und Dateien
+GND ───────────────────────────── J2 Sleeve
+```
+
+Für links und rechts werden **zwei getrennte 220-Ω-Widerstände** verwendet.
+
+**Tip und Ring dürfen nicht direkt durch einen einzelnen Widerstand miteinander verbunden werden**, da dadurch die beiden Stereo-Kanäle gekoppelt würden.
+
+Der normale PC-/Simulator-Sound bleibt damit stereo, während das Mono-Sidetone-Signal auf beiden Ohren hörbar ist.
+
+## V2-Dokumentation
 
 | Inhalt | Datei |
 |---|---|
-| Stückliste | [BOM](hardware/BOM.md), [CSV](hardware/BOM.csv) |
-| Elektrischer Schaltplan | [Schaltplan](hardware/schematic.md) |
-| Anschluss für Anschluss | [Verdrahtung](docs/wiring.md) |
-| Aufbau und Inbetriebnahme | [Bauanleitung](docs/build.md) |
-| Störungen und bekannte Grenzen | [Troubleshooting](docs/troubleshooting.md) |
-| Gehäuse und 3D-Druck | [CAD](cad/README.md) |
-| Quellen und Projektstand | [Provenienz](docs/provenance.md) |
-| Release Notes | [v1.0.0](releases/v1.0.0.md) |
+| V2-Übersicht | [v2/README.md](v2/README.md) |
+| V2-Stückliste | [BOM](v2/hardware/BOM.md), [CSV](v2/hardware/BOM.csv) |
+| V2-Schaltplan / Funktionsschema | [Schematic](v2/hardware/schematic.md) |
+| V2-Verdrahtung | [Wiring](v2/docs/wiring.md) |
+| Aufbau und Inbetriebnahme | [Build](v2/docs/build.md) |
+| Fehlersuche und bekannte Grenzen | [Troubleshooting](v2/docs/troubleshooting.md) |
+| V2-Gehäuse / CAD / STL / Sidetone-Knauf | [CAD](v2/cad/README.md) |
+| Release Notes | [v2.0.0](releases/v2.0.0.md) |
 
-## Prinzip
+## V1-Dokumentation
 
-```text
-                              ┌──────── Kopfhörer L ───── J2 Tip
-PC ─ USB ─ USB-Soundkarte ────┼──────── Kopfhörer R ───── J2 Ring
-       │                      └──────── Kopfhörer GND ─── J2 Sleeve
-       │
-       │                     MIC-IN
-       │                        ↑
-       │                      10 kΩ
-       │                        ↑
-       │                       C3
-       │                        ↑
-       │                 GA-Mikrofon-Ring
-       │                        ↑
-       │                      220 Ω
-       │                        ↑
-       └─ +5 V ─ Step-Up 12 V ─ Filter
+Die ursprüngliche V1-Dokumentation bleibt erhalten:
 
-Alle vorgesehenen Masseanschlüsse teilen einen gemeinsamen GND.
-```
+| Inhalt | Datei |
+|---|---|
+| V1-Stückliste | [BOM](hardware/BOM.md), [CSV](hardware/BOM.csv) |
+| V1-Schaltplan | [Schaltplan](hardware/schematic.md) |
+| V1-Verdrahtung | [Verdrahtung](docs/wiring.md) |
+| V1-Aufbau | [Bauanleitung](docs/build.md) |
+| V1-Troubleshooting | [Troubleshooting](docs/troubleshooting.md) |
+| V1-Gehäuse / CAD | [CAD](cad/README.md) |
+| V1 Release Notes | [v1.0.0](releases/v1.0.0.md) |
 
-Der Kopfhörerausgang bleibt **Stereo**. Es findet keine passive Mono-Zusammenführung statt.
+## Hinweis zur Erprobung
 
-## Direct Monitoring / Sidetone
+V1 und V2 sind dokumentierte, funktionierende Einzelprototypen. Es wurden keine standardisierten EMV-, Rausch-, Frequenzgang-, Klirr- oder Langzeitmessungen durchgeführt.
 
-V1 enthält kein analoges Direct Monitoring bzw. Sidetone.
-
-Software-Monitoring über Windows oder entsprechende Audio-Software ist möglich, kann jedoch eine deutlich hörbare Verzögerung verursachen.
-
-Eine analoge Sidetone-/Preamp-Lösung ist als mögliche spätere V2 vorgesehen und nicht Bestandteil von V1.
+Aus dem erfolgreichen Betrieb kann keine allgemeine Kompatibilität mit anderen GA-Headsets, USB-Soundkarten oder Hardwarekonfigurationen abgeleitet werden.
 
 ## Unterstützung
 
-Wenn dir das Projekt beim Einsatz deines Aviation-Headsets im Simulator hilft, kannst du die weitere Entwicklung freiwillig mit einem Kaffee unterstützen. Die Dateien bleiben frei verfügbar.
+Wenn dir das Projekt beim Einsatz deines Aviation-Headsets im Simulator hilft, kannst du die weitere Entwicklung freiwillig unterstützen. Die Projektdateien bleiben frei verfügbar.
 
 <a href="https://buymeacoffee.com/soso1999">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
@@ -146,5 +127,3 @@ Die vollständigen Lizenztexte und die genaue Zuordnung befinden sich unter [LIC
 Copyright © 2026 Josef Jankarashvili.
 
 Lightspeed, Zulu, Bose und weitere genannte Hersteller- oder Produktnamen sind Marken ihrer jeweiligen Rechteinhaber. Dieses Projekt ist unabhängig und wird von den genannten Herstellern weder unterstützt noch zertifiziert.
-
-Die elektrischen Herstellerdaten des Lightspeed Zulu 4 wurden anhand der [offiziellen Zulu-4-Spezifikation](https://www.lightspeedaviation.com/product/zulu-4-anr-headset/) geprüft. Weitere Quellen befinden sich in der Provenienz-Dokumentation.

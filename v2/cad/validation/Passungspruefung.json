@@ -1,0 +1,8 @@
+{
+  "V1_board_collision_volume_mm3": 0.0,
+  "V2_board_vs_tray_collision_mm3": 0.0,
+  "tray_vs_base_collision_mm3": 1.1368683772161603e-13,
+  "lid_vs_base_collision_mm3": 5.565207040862663e-13,
+  "connector_envelopes_vs_tray_mm3": 0.0,
+  "lower_component_envelope_vs_tray_mm3": 0.0
+}

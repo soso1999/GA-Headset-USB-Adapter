@@ -1,0 +1,19 @@
+Referenz,Menge,Bauteil,Wert / Typ,Hinweis
+U3,1,Dual Audio Op-Amp,"OPA2134PA, DIP-8",Sidetone-Vorverstärker und Buffer
+SOCK1,1,IC-Sockel,DIP-8,empfohlen
+R10,1,Versorgungswiderstand,47 Ω,V2-Versorgungsfilter
+R11/R12,2,Widerstand,22 kΩ,ca. 6-V-Hilfspunkt
+R13,1,Widerstand,100 kΩ,OPA-Eingang gegen 6-V-Hilfspunkt
+R14,1,Widerstand,10 kΩ,fester Gain-Widerstand
+TR1,1,Trimmer,100 kΩ (104),"getesteter Aufbau ca. 14,3 kΩ effektiv"
+POT1,1,logarithmischer Poti,10 kΩ,Sidetone-Lautstärke
+R15,1,Widerstand,100 kΩ,SIDETONE OUT gegen GND
+R16/R17,2,Serienwiderstand,100 Ω,USB-Soundkarte L/R
+R18/R19,2,Mischwiderstand,220 Ω,Sidetone getrennt nach L/R
+C10,1,Elko,470 µF / >=25 V,Versorgungsfilter
+C11,1,Keramikkondensator,100 nF,Versorgungsfilter
+C12,1,Keramikkondensator,100 nF,OPA Pin 8 zu Pin 4
+C13,1,Elko,100 µF,6-V-Hilfspunkt
+C14,1,Folienkondensator,"1,5 µF",MIC-IN-Kopplung
+C15,1,Elko,100 µF,"Ausgangskopplung, Plus Richtung Pin 7"
+PCB2,1,Lochrasterplatine,ca. 60 × 30 mm,getesteter Prototyp

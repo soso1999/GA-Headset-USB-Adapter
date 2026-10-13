@@ -1,0 +1,62 @@
+{
+  "Unterteil": {
+    "watertight": true,
+    "winding_consistent": true,
+    "components": 1,
+    "bounds_mm": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        100.0,
+        82.0,
+        55.400001525878906
+      ]
+    ],
+    "volume_mm3": 101413.51307049638,
+    "triangles": 6384,
+    "manifold_status": "Error.NoError"
+  },
+  "Deckel": {
+    "watertight": true,
+    "winding_consistent": true,
+    "components": 1,
+    "bounds_mm": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        100.0,
+        82.0,
+        4.400000095367432
+      ]
+    ],
+    "volume_mm3": 21760.7123878622,
+    "triangles": 2270,
+    "manifold_status": "Error.NoError"
+  },
+  "V2_Zwischenablage": {
+    "watertight": true,
+    "winding_consistent": true,
+    "components": 1,
+    "bounds_mm": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        83.0,
+        34.0,
+        5.199999809265137
+      ]
+    ],
+    "volume_mm3": 5291.583218917222,
+    "triangles": 252,
+    "manifold_status": "Error.NoError"
+  }
+}
