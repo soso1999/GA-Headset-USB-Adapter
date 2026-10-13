@@ -50,8 +50,6 @@ Die V2-Sidetone-Schaltung ist als separate Zusatzplatine ausgeführt. Die funkti
 
 ![V2 Sidetone-Platine und interne Verdrahtung](docs/images/v2-internal-wiring.jpg)
 
-![Interner Aufbau des V2-Prototyps](docs/images/v2-internal-layout.jpg)
-
 ## Finale getestete Audio-Mischung V2
 
 Die funktionierende Kombination des V2-Prototyps ist:
