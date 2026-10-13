@@ -4,7 +4,7 @@ Copyright © 2026 Josef Jankarashvili.
 
 Für die verschiedenen Bestandteile dieses Projekts gelten folgende Lizenzen:
 
-- `cad/**`, `hardware/**`, `v2/hardware/**` sowie die elektrische Schaltungs-, Verdrahtungs- und Aufbaudokumentation einschließlich `v2/docs/wiring.md` und `v2/docs/build.md`:
+- `cad/**`, `v2/cad/**`, `hardware/**`, `v2/hardware/**` sowie die elektrische Schaltungs-, Verdrahtungs- und Aufbaudokumentation einschließlich `v2/docs/wiring.md` und `v2/docs/build.md`:
   **CERN Open Hardware Licence Version 2 – Permissive (`CERN-OHL-P-2.0`)**.  
   Der vollständige Lizenztext befindet sich unter `LICENSES/CERN-OHL-P-2.0.txt`.
 
