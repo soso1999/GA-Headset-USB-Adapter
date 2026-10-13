@@ -48,7 +48,7 @@ Von links nach rechts:
 
 Die V2-Sidetone-Schaltung ist als separate Zusatzplatine ausgeführt. Die funktionierende V1-Grundschaltung bleibt erhalten.
 
-![V2 Sidetone-Platine und interne Verdrahtung](docs/images/v2-internal-wiring.jpg)
+![V2 Sidetone-Platine und interne Verdrahtung](docs/images/v2-internal-layout.jpg)
 
 ## Finale getestete Audio-Mischung V2
 
